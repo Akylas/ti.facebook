@@ -1,9 +1,9 @@
 tmp
 bin
 build
-/android/dist/
-/android/libs/
-/android/res/
+android/dist
+android/libs/
+android/res/
 .DS_Store
 .gitignore
 .svn
