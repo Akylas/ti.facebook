@@ -149,8 +149,10 @@
 -(void)resumed:(id)note
 {
 	VerboseLog(@"[DEBUG] facebook resumed");
-	
-	[self handleRelaunch];
+    
+	if (![self handleRelaunch] && loggingIn) {
+        [self fbDidNotLogin:YES];
+    }
 }
 
 -(void)autoExtendToken:(NSNotification *)notification
@@ -161,6 +163,7 @@
 -(void)startup
 {
 	VerboseLog(@"[DEBUG] facebook startup");
+    loggingIn = NO;
 	[super startup];
 	TiThreadPerformOnMainThread(^{
 		NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
@@ -435,6 +438,7 @@ if(![x isKindOfClass:[t class]]){ \
 		[self throwException:@"missing appid" subreason:nil location:CODELOCATION];
 	}
 	
+    loggingIn = YES;
 	TiThreadPerformOnMainThread(^{
 		// forget in case it fails
 		[self _unsave];
@@ -737,6 +741,7 @@ if(![x isKindOfClass:[t class]]){ \
 - (void)fbDidLogin
 {
 	VerboseLog(@"[DEBUG] facebook fbDidLogin");
+    loggingIn = NO;
 	
 	[facebook requestWithGraphPath:@"me" andDelegate:self];
 }
@@ -748,6 +753,7 @@ if(![x isKindOfClass:[t class]]){ \
 {
 	VerboseLog(@"[DEBUG] facebook fbDidNotLogin: cancelled=%d",cancelled);
 	loggedIn = NO;
+    loggingIn = NO;
 	[self fireLoginChange];
 	[self fireLogin:nil cancelled:cancelled withError:nil];
 }
@@ -760,6 +766,7 @@ if(![x isKindOfClass:[t class]]){ \
 	VerboseLog(@"[DEBUG] facebook fbDidLogout");
 	
 	loggedIn = NO;
+    loggingIn = NO;
 	[self _unsave];
 	[self fireLoginChange];
 	[self fireEvent:@"logout"];

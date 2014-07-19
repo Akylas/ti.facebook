@@ -18,6 +18,7 @@
 {
 	Facebook *facebook;
 	BOOL loggedIn;
+	BOOL loggingIn;
 	NSString *uid;
 	NSString *url;
 	NSString *appid;
