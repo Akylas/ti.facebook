@@ -1,15 +1,9 @@
-tmp
-bin
+# Eclipse
 build
-android/dist
-android/libs/
-android/res/
+.project
 .DS_Store
-.gitignore
-.svn
-*.xcworkspace/
-xcuserdata
-*.xcuserstate
-*.xcuserdata*
-
-
+.classpath
+.settings/
+bin/**
+libs
+dist

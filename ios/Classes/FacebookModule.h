@@ -1,11 +1,18 @@
 /**
- * Facebook Module
- * Copyright (c) 2009-2013 by Appcelerator, Inc. All Rights Reserved.
+ * FacebookIOS
+ *
+ * Copyright (c) 2014 by Mark Mokryn, Inc. All Rights Reserved.
+ * Licensed under the terms of the Apache Public License
+ * Please see the LICENSE included with this distribution for details.
+ *
+ * Copyright (c) 2009-2015 by Appcelerator, Inc. All Rights Reserved.
+ * Licensed under the terms of the Apache Public License
  * Please see the LICENSE included with this distribution for details.
  */
 
 #import "TiModule.h"
-#import "Facebook.h"
+#import <FacebookSDK/FacebookSDK.h>
+#import <Social/Social.h>
 
 @protocol TiFacebookStateListener
 @required
@@ -13,31 +20,17 @@
 -(void)logout;
 @end
 
-
-@interface FacebookModule : TiModule <FBRequestDelegate, FBDialogDelegate, FBSessionDelegate>
+@interface FacebookModule : TiModule
 {
-	Facebook *facebook;
-	BOOL loggedIn;
-	BOOL loggingIn;
-	NSString *uid;
-	NSString *url;
-	NSString *appid;
-	NSArray *permissions;
-	NSMutableArray *stateListeners;
-    BOOL forceDialogAuth;
+    NSString *uid;
+    NSArray *permissions;
+    NSMutableArray *stateListeners;
 }
 
-@property(nonatomic,readonly) Facebook *facebook;
-@property(nonatomic,readonly) NSNumber *BUTTON_STYLE_NORMAL;
-@property(nonatomic,readonly) NSNumber *BUTTON_STYLE_WIDE;
-
--(BOOL)isLoggedIn;
 -(void)addListener:(id<TiFacebookStateListener>)listener;
 -(void)removeListener:(id<TiFacebookStateListener>)listener;
 
 -(void)authorize:(id)args;
--(void)reauthorize:(id)args;
 -(void)logout:(id)args;
-
 
 @end

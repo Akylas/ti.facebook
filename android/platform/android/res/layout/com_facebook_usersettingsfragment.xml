@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Copyright 2012 Facebook
+    Copyright 2010-present Facebook.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -18,12 +18,12 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:loginView="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/com_facebook_usersettingsfragment_background_gradient" >
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <ImageView
@@ -37,7 +37,7 @@
 
         <TextView
             android:id="@+id/com_facebook_usersettingsfragment_profile_name"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="100dp"
             android:lines="1"
             android:textSize="16sp"
