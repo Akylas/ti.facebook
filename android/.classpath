@@ -10,12 +10,12 @@
 	<classpathentry kind="var" path="AKYLAS_SDK_PATH/android/android-support-v4.jar"/>
 	<classpathentry kind="var" path="AKYLAS_SDK_PATH/android/android-support-v7-appcompat.jar"/>
 	<classpathentry kind="var" path="AKYLAS_SDK_PATH/android/modules/titanium-ui.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/facebooksdk.jar"/>
-	<classpathentry kind="lib" path="lib/bolts-android-1.1.2.jar"/>
 	<classpathentry kind="src" path=".apt_generated">
 		<attributes>
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/bolts-android-1.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/facebook-android-4.12.0.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
