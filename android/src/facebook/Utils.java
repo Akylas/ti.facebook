@@ -20,8 +20,8 @@ public final class Utils
 {
 	public static Bundle mapToBundle(Map<String, Object> map)
 	{
-		if (map == null) return new Bundle();
-		Bundle bundle = new Bundle(map.size());
+		if (map == null) return new Bundle(); 
+		Bundle bundle = new Bundle(map.size()); 
 		
 		for (String key : map.keySet()) {
 			Object val = map.get(key);

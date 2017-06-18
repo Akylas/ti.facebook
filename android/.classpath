@@ -15,7 +15,8 @@
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/bolts-android-1.2.1.jar"/>
-	<classpathentry kind="lib" path="lib/facebook-android-4.12.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/bolts-android-1.2.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/facebook-android-4.12.0.jar"/>
+	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

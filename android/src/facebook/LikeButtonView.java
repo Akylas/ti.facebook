@@ -59,7 +59,7 @@ public class LikeButtonView extends TiUIView
 		for(AuxiliaryViewPosition avp : AuxiliaryViewPosition.values()) { 
 			if (avp.name().toString().equalsIgnoreCase(name)) {
 				likeView.setAuxiliaryViewPosition(avp);
-				break;
+				break; 
 			}
 		}		
 	}

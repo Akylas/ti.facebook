@@ -25,7 +25,7 @@ import com.facebook.login.widget.LoginButton.ToolTipMode;
 
 public class LoginButtonView extends TiUIView {
 
-	private static final String TAG = "LoginButtonView";
+	private static final String TAG = "LoginButtonView";  
 	private LoginButton loginButton;
 	CallbackManager callbackManager;
 	private TiFacebookModule module;

@@ -132,6 +132,7 @@ public class TiFacebookModule extends KrollModule implements OnActivityResultEve
 	{
 		super();
 		module = this;
+        callbackManager  = CallbackManager.Factory.create();
 	}
 
 	@Kroll.onAppCreate
@@ -147,14 +148,12 @@ public class TiFacebookModule extends KrollModule implements OnActivityResultEve
     @Override
     public void onResume(Activity activity) {
         super.onResume(activity);
-        Log.d(TAG, "Calling activateApp");
         AppEventsLogger.activateApp(activity);
     }
     
     @Override
     public void onPause(Activity activity) {
         super.onPause(activity);
-        Log.d(TAG, "Calling deactivateApp");
         AppEventsLogger.deactivateApp(activity);
     }
 
@@ -414,7 +413,6 @@ public class TiFacebookModule extends KrollModule implements OnActivityResultEve
 		if (timeout >= 0) {
 			Log.w(TAG, "Property `timeout` is deprecated. It is not used.");
 		}
-		callbackManager  = CallbackManager.Factory.create();
 		facebookCallback = new FacebookCallback<LoginResult>() {
 			KrollDict data = new KrollDict();
 	        @Override

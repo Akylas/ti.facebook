@@ -4,7 +4,6 @@
 #
 version: 6.2.0
 apiversion: 3
-architectures: armeabi-v7a x86
 description: facebook
 author: Mark Mokryn and Ashraf A. S. (Appcelerator)
 license: Apache License Version 2.0
@@ -13,7 +12,7 @@ respackage: com.facebook
 debug_project_subpath: ../ti.facebook/android
 
 # these should not be edited
-name: Facebook
+name: facebook
 moduleid: facebook
 guid: e4f7ac61-1ee7-44c5-bc27-fa6876e2dce9
 platform: android
