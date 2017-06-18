@@ -1,9 +1,14 @@
 /**
-  * Copyright (c) 2014 by Mark Mokryn, Inc. All Rights Reserved.
-  * Licensed under the terms of the Apache Public License 2.0
-  * Please see the LICENSE included with this distribution for details.
-  *
-  */
+ * Copyright (c) 2014 by Mark Mokryn All Rights Reserved.
+ * Licensed under the terms of the Apache Public License 2.0
+ * Please see the LICENSE included with this distribution for details.
+ *
+ * Appcelerator Titanium Mobile
+ * Copyright (c) 2015 by Appcelerator, Inc. All Rights Reserved.
+ * Licensed under the terms of the Apache Public License
+ * Please see the LICENSE included with this distribution for details.
+ *
+ */
 
 package facebook;
 
@@ -14,7 +19,6 @@ import org.appcelerator.kroll.common.Log;
 import org.appcelerator.titanium.view.TiUIView;
 import org.appcelerator.titanium.proxy.TiViewProxy;
 
-import com.facebook.widget.LikeView.*;
 
 import android.app.Activity;
 
@@ -22,31 +26,25 @@ import android.app.Activity;
 	"foregroundColor",
 	"likeViewStyle",
 	"auxiliaryViewPosition",
-	"objectId",
+	"objectID",
 	"horizontalAlignment"
  })
 public class LikeButtonProxy extends TiViewProxy 
 {
-	// Standard Debugging variables
 	private static final String TAG = "LikeButtonProxy";
-
 	public LikeButtonProxy() {
 		super();
-		defaultValues.put("likeViewStyle", Style.STANDARD);
-		defaultValues.put("auxiliaryViewPosition", AuxiliaryViewPosition.BOTTOM);
-		defaultValues.put("horizontalAlignment", HorizontalAlignment.CENTER);
+		defaultValues.put("likeViewStyle", "standard");
+		defaultValues.put("auxiliaryViewPosition", "bottom");
+		defaultValues.put("horizontalAlignment", "center");
 	}
 	
 	@Override
 	public TiUIView createView(Activity activity) 
-	{
-		// This method is called when the view needs to be created. This is
-		// a required method for a TiViewProxy subclass.
-		
+	{	
 		LikeButtonView view = new LikeButtonView(this);
 		view.getLayoutParams().autoFillsHeight = true;
 		view.getLayoutParams().autoFillsWidth = true;
-		
 		return view;
 	}
 
