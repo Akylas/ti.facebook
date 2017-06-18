@@ -7,8 +7,8 @@
 package facebook;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
-import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.KrollProxy;
 import org.appcelerator.kroll.common.Log;
 import org.appcelerator.titanium.proxy.TiViewProxy;
@@ -29,7 +29,6 @@ public class LoginButtonView extends TiUIView {
 	public LoginButtonView(TiViewProxy proxy) {
 		super(proxy);
 
-		Log.d(TAG, "[VIEW LIFECYCLE EVENT] view");
 		
 		int fbLoginButtonId;
 		try {
@@ -46,10 +45,9 @@ public class LoginButtonView extends TiUIView {
 	}
 		
 	@Override
-	public void processProperties(KrollDict props) 
+	public void processProperties(HashMap props) 
 	{
 		super.processProperties(props);
-		Log.d(TAG,"[VIEW LIFECYCLE EVENT] processProperties " + props);
 		if (props.containsKey("publishPermissions")) {
 			Object value = props.get("publishPermissions");
 			if (value instanceof Object[]) {
@@ -148,6 +146,5 @@ public class LoginButtonView extends TiUIView {
 			super.propertyChanged(key, oldValue, newValue, proxy);
 		}
 		
-		Log.d(TAG,"[VIEW LIFECYCLE EVENT] propertyChanged: " + key + ' ' + oldValue + ' ' + newValue);
 	}
 }

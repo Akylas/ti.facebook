@@ -6,9 +6,7 @@
   */
 package facebook;
 
-import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.annotations.Kroll;
-import org.appcelerator.kroll.common.Log;
 import org.appcelerator.titanium.proxy.TiViewProxy;
 import org.appcelerator.titanium.view.TiUIView;
 
@@ -26,7 +24,6 @@ public class LoginButtonProxy extends TiViewProxy {
 
 	public LoginButtonProxy() {
 		super();
-		Log.d(TAG, "[VIEWPROXY LIFECYCLE EVENT] init");
 	}
 			
 	@Override
@@ -35,18 +32,4 @@ public class LoginButtonProxy extends TiViewProxy {
 		return new LoginButtonView(this);
 	}
 
-	// Handle creation options
-	@Override
-	public void handleCreationDict(KrollDict options) 
-	{
-		// This method is called from handleCreationArgs if there is at least
-		// argument specified for the proxy creation call and the first argument
-		// is a KrollDict object.
-
-		Log.d(TAG, "VIEWPROXY LIFECYCLE EVENT] handleCreationDict " + options);
-
-		// Calling the superclass method ensures that the properties specified
-		// in the dictionary are properly set on the proxy object.
-		super.handleCreationDict(options);
-	}
 }

@@ -43,7 +43,6 @@ import com.facebook.Response;
 import com.facebook.Session;
 import com.facebook.SessionDefaultAudience;
 import com.facebook.SessionState;
-import com.facebook.Settings;
 import com.facebook.Session.NewPermissionsRequest;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.model.GraphObject;
@@ -104,14 +103,13 @@ public class TiFacebookModule extends KrollModule
 	@Kroll.onAppCreate
 	public static void onAppCreate(TiApplication app)
 	{
-		Log.d(TAG, "Facebook module using SDK version " + Settings.getSdkVersion());
+//		Log.d(TAG, "Facebook module using SDK version " + Settings.getSdkVersion());
 		// put module init code that needs to run when the application is created
 	}
 
 	private Session.StatusCallback callback = new Session.StatusCallback() {
 		@Override
 	    public void call(Session session, SessionState state, Exception exception) {
-			Log.d(TAG, "onSessionStateChange called");
 			onSessionStateChange(session, state, exception);
 		}
 	};
@@ -125,7 +123,6 @@ public class TiFacebookModule extends KrollModule
 		if (exception instanceof FacebookOperationCanceledException) {
 			ignoreClose = false;
 			loggedIn = false;
-			Log.d(TAG, "StatusCallback cancelled");
 			data.put("cancelled", true);
 			data.put("success", false);
 			fireEvent(EVENT_LOGIN, data);
@@ -167,7 +164,6 @@ public class TiFacebookModule extends KrollModule
 		} else if (state.isOpened()) {
 			// fire login
 			ignoreClose = false;
-			Log.d(TAG, "StatusCallback opened");
 			if (state == SessionState.OPENED_TOKEN_UPDATED) {
 				Log.d(TAG, "Session.state == OPENED_TOKEN_UPDATED");
 				if (permissionCallback != null) {
@@ -188,7 +184,6 @@ public class TiFacebookModule extends KrollModule
 			data.put("cancelled", false);
 			makeMeRequest(session);
 		} else if (state.isClosed()) {
-			Log.d(TAG, "StatusCallback closed");
 			if (ignoreClose) {
 				// since we sometimes see Closed immediately after open is called
 				Log.d(TAG, "Ignore close");
@@ -200,7 +195,6 @@ public class TiFacebookModule extends KrollModule
 				return;
 			}
 			loggedIn = false;
-			Log.d(TAG, "Fire event logout");
 			fireEvent(EVENT_LOGOUT, null);
 			if (permissionCallback != null) {
 				data.put("logout", true);
@@ -404,7 +398,6 @@ public class TiFacebookModule extends KrollModule
 
 	@Kroll.getProperty
 	public String getAccessToken() {
-		Log.d(TAG, "get accessToken");
 		return Session.getActiveSession().getAccessToken();
 	}
 	
@@ -443,16 +436,12 @@ public class TiFacebookModule extends KrollModule
 	@Kroll.method
 	public void initialize(@Kroll.argument(optional=true) int timeout) {
 		meRequestTimeout = timeout;
-		Log.d(TAG, "initialize called with timeout: " + meRequestTimeout);
 		Session session = Session.openActiveSessionFromCache(TiApplication.getInstance());
 		if (session != null){
-			Log.d(TAG, "cached session found");
 			loggedIn = true;
-			Log.d(TAG, "session opened from cache, state: " + session.getState());
 			makeMeRequest(session);
 		} else {
 			loggedIn = false;
-			Log.d(TAG, "no cached session, user will need to login");
 		}
 	}
 	
@@ -460,10 +449,6 @@ public class TiFacebookModule extends KrollModule
 	public void authorize() {
 		Activity activity = TiApplication.getInstance().getCurrentActivity();
 		ignoreClose = true;
-		Log.d(TAG, "authorize called, permissions length: " + TiFacebookModule.permissions.length);
-		for (int i=0; i < TiFacebookModule.permissions.length; i++){
-			Log.d(TAG, "authorizing permission: " + TiFacebookModule.permissions[i]);
-		}
 		Session.openActiveSession(activity, true, Arrays.asList(TiFacebookModule.permissions), callback);
 	}
 	
@@ -474,13 +459,9 @@ public class TiFacebookModule extends KrollModule
 
 	@Kroll.method
 	public void logout() {
-		Log.d(TAG, "logout in facebook proxy");
 		Session session = Session.getActiveSession();
 		if (session != null && !session.isClosed()) {
-			Log.d(TAG, "closing session");
 			session.closeAndClearTokenInformation();
-		} else {
-			Log.d(TAG, "session is null or already closed");
 		}
 	}
 	

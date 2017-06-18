@@ -8,10 +8,11 @@
 package facebook;
 
 import org.appcelerator.titanium.view.TiUIView;
-import org.appcelerator.kroll.KrollDict;
+
+import java.util.HashMap;
+
 import org.appcelerator.kroll.KrollProxy;
 import org.appcelerator.titanium.proxy.TiViewProxy;
-import org.appcelerator.kroll.common.Log;
 import org.appcelerator.titanium.util.TiColorHelper;
 import org.appcelerator.titanium.util.TiConvert;
 
@@ -27,9 +28,7 @@ public class LikeButtonView extends TiUIView
 	public LikeButtonView(TiViewProxy proxy) 
 	{
 		super(proxy);
-		
-		Log.d(TAG, "[VIEW LIFECYCLE EVENT] view");
-		
+				
 		likeView = new LikeView(proxy.getActivity());
 		// Set the view as the native view. You must set the native view
 		// for your view to be rendered correctly.
@@ -69,29 +68,28 @@ public class LikeButtonView extends TiUIView
 	}
 	
 	@Override
-	public void processProperties(KrollDict props) 
+	public void processProperties(HashMap props) 
 	{
 		super.processProperties(props);
-		Log.d(TAG,"[VIEW LIFECYCLE EVENT] processProperties " + props);
 		if (props.containsKey("objectId")) {
-			likeView.setObjectId(props.getString("objectId"));
+			likeView.setObjectId(TiConvert.toString(props, "objectId"));
 		}
 		if (props.containsKey("likeViewStyle")) {
 			//likeView.setLikeViewStyle(Style.values()[props.getInt("likeViewStyle")]);
-			String styleName = props.getString("likeViewStyle");
+			String styleName = TiConvert.toString(props, "likeViewStyle");
 			setLikeViewStyle(styleName);
 
 		}
 		if (props.containsKey("auxiliaryViewPosition")) {
-			String positionName = props.getString("auxiliaryViewPosition");
+			String positionName = TiConvert.toString(props, "auxiliaryViewPosition");
 			setAuxiliaryViewPosition(positionName);
 		}
 		if (props.containsKey("horizontalAlignment")) {
-			String haName = props.getString("horizontalAlignment");
+			String haName = TiConvert.toString(props, "horizontalAlignment");
 			setHorizontalAlignment(haName);
 		}
 		if (props.containsKey("foregroundColor")) {
-			likeView.setForegroundColor(TiColorHelper.parseColor(props.getString("foregroundColor")));
+			likeView.setForegroundColor(TiColorHelper.parseColor(TiConvert.toString(props, "foregroundColor")));
 		}		
 	}
 	
@@ -114,6 +112,5 @@ public class LikeButtonView extends TiUIView
 		} else {
 			super.propertyChanged(key, oldValue, newValue, proxy);
 		}
-		Log.d(TAG,"[VIEW LIFECYCLE EVENT] propertyChanged: " + key + ' ' + oldValue + ' ' + newValue);
 	}
 }

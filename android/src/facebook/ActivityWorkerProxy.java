@@ -12,6 +12,8 @@
  */
 package facebook;
 
+import java.util.HashMap;
+
 import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.KrollProxy;
 import org.appcelerator.kroll.annotations.Kroll;
@@ -44,7 +46,7 @@ public class ActivityWorkerProxy extends KrollProxy implements OnActivityResultE
 
 	// Handle creation options
 	@Override
-	public void handleCreationDict(KrollDict options)
+	public void handleCreationDict(HashMap options)
 	{
 		super.handleCreationDict(options);
 	}
